@@ -9,5 +9,6 @@ config()
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
+  min: 10,
 })
-export const db = drizzle(pool, { schema })
+export const db = drizzle(pool, { schema, casing: 'snake_case' })
