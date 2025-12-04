@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { cn } from '@/features/abstractions/lib/utils'
 import { Logo } from '@/features/abstractions/components/reused/logo'
+import { Theme } from '@/features/abstractions/components/reused/theme'
 import { Button } from '@/features/abstractions/components/primitives/button'
 
 export function Header(props: React.ComponentProps<'header'>) {
@@ -34,7 +35,7 @@ export function HeaderActions(props: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="header-actions"
-      className="flex justify-end items-center gap-2"
+      className="flex justify-end items-center gap-2 "
       {...props}
     >
       <Button asChild variant="outline">
@@ -44,6 +45,8 @@ export function HeaderActions(props: React.ComponentProps<'div'>) {
       <Button asChild>
         <Link to="/signup">Signup</Link>
       </Button>
+
+      <Theme />
     </div>
   )
 }

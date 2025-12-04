@@ -1,10 +1,10 @@
+import { TanStackDevtools } from '@tanstack/react-devtools'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import {
   HeadContent,
   Scripts,
   createRootRouteWithContext,
 } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
@@ -12,9 +12,11 @@ import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
 
-import { NotFound } from '@/features/abstractions/components/reused/not-found'
+import { cn } from '@/features/abstractions/lib/utils'
 import { Header } from '@/features/abstractions/components/reused/header'
 import { Footer } from '@/features/abstractions/components/reused/footer'
+import { useTheme } from '@/features/abstractions/components/reused/theme'
+import { NotFound } from '@/features/abstractions/components/reused/not-found'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -37,6 +39,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const theme = useTheme()
+
   return (
     <html lang="en">
       <head>
@@ -45,7 +49,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body
         suppressHydrationWarning
-        className="dark overflow-hidden grid grid-rows-[auto_1fr_auto] h-screen bg-background text-foreground"
+        className={cn(
+          'overflow-hidden grid grid-rows-[auto_1fr_auto] h-screen bg-background text-foreground',
+          theme === 'dark' ? 'dark' : '',
+        )}
       >
         <Header className="h-15">
           <Header.Logo />
