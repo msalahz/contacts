@@ -1,25 +1,65 @@
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { Link } from '@tanstack/react-router'
+
 import { cn } from '@/features/abstractions/lib/utils'
+import { authClient } from '@/integrations/better-auth/auth-client'
+import { useAppForm } from '@/integrations/tanstack-form/hooks/form'
 import { Button } from '@/features/abstractions/components/primitives/button'
 import {
   Card,
+  CardTitle,
+  CardHeader,
   CardContent,
   CardDescription,
-  CardHeader,
-  CardTitle,
 } from '@/features/abstractions/components/primitives/card'
 import {
   Field,
-  FieldDescription,
   FieldGroup,
-  FieldLabel,
   FieldSeparator,
+  FieldDescription,
 } from '@/features/abstractions/components/primitives/field'
-import { Input } from '@/features/abstractions/components/primitives/input'
+
+const formSchema = z.object({
+  email: z.email('Invalid email address').nonempty('Email is required'),
+  password: z
+    .string()
+    .nonempty('Password is required')
+    .min(10, 'Password must be at least 10 characters long'),
+})
 
 export function SigninForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
+  const form = useAppForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    validators: {
+      onSubmit: formSchema,
+    },
+    async onSubmit({ value }) {
+      return await authClient.signIn.email({
+        email: value.email,
+        password: value.password,
+        callbackURL: '/console',
+        rememberMe: true,
+        fetchOptions: {
+          onSuccess: () => {
+            toast.success('User signed in successfully')
+          },
+          onError: (ctx) => {
+            toast.error('Error signing in', {
+              description: ctx.error?.message,
+            })
+          },
+        },
+      })
+    },
+  })
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -28,7 +68,14 @@ export function SigninForm({
           <CardDescription>Login with your Google account</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              void form.handleSubmit()
+            }}
+            className="space-y-4"
+          >
             <FieldGroup>
               <Field>
                 <Button variant="outline" type="button">
@@ -44,33 +91,42 @@ export function SigninForm({
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
               </FieldSeparator>
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
-              </Field>
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
-                <Input id="password" type="password" required />
-              </Field>
-              <Field>
-                <Button type="submit">Login</Button>
+              <form.AppField
+                name="email"
+                children={(field) => (
+                  <field.Input
+                    type="email"
+                    label="Email"
+                    placeholder="me@example.com"
+                  />
+                )}
+              />
+
+              <form.AppField
+                name="password"
+                children={(field) => (
+                  <field.Input
+                    type="password"
+                    label="Password"
+                    labelChildren={
+                      <Link
+                        to="/forgot-password"
+                        className="text-foreground ml-auto text-sm underline-offset-4 hover:underline"
+                      >
+                        Forgot your password?
+                      </Link>
+                    }
+                  />
+                )}
+              />
+
+              <form.AppForm>
+                <form.SubscribeButton label="Sign in" />
+
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="#">Sign up</a>
+                  Don&apos;t have an account? <Link to="/signup">Sign up</Link>
                 </FieldDescription>
-              </Field>
+              </form.AppForm>
             </FieldGroup>
           </form>
         </CardContent>
