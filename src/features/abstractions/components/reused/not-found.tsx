@@ -1,5 +1,5 @@
-import { Button } from '@/features/abstractions/components/primitives/button'
 import { Link } from '@tanstack/react-router'
+import { Button } from '@/features/abstractions/components/primitives/button'
 
 export function NotFound() {
   return (

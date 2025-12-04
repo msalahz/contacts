@@ -29,7 +29,7 @@ export function Logo(props: React.SVGProps<SVGSVGElement>) {
         fontSize="20"
         fontWeight="bold"
         fill="url(#goldGradient)"
-        text-anchor="middle"
+        textAnchor="middle"
       >
         Contacts
       </text>
