@@ -1,5 +1,7 @@
 import { createAuthClient } from 'better-auth/react'
 
+import { cenv } from '@/env'
+
 export const authClient = createAuthClient({
   /** The base URL of the server (optional if you're using the same domain) */
   baseURL: cenv.VITE_BETTER_AUTH_BASE_URL!,
@@ -7,5 +9,5 @@ export const authClient = createAuthClient({
 
 export const { signIn, signUp, useSession } = createAuthClient()
 
-export type Session = authClient.$Infer.Session
-export type User = authClient.$Infer.Session.user
+export type Session = typeof authClient.$Infer.Session
+export type User = typeof authClient.$Infer.Session.user
