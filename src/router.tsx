@@ -6,6 +6,7 @@ import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 import { routeTree } from './routeTree.gen'
 
 import { NotFound } from '@/features/abstractions/components/reused/not-found'
+import { DefaultCatchBoundary } from '@/features/abstractions/components/reused/default-catch-boundary'
 
 // Create a new router instance
 export const getRouter = () => {
@@ -13,7 +14,7 @@ export const getRouter = () => {
 
   const router = createRouter({
     routeTree,
-    context: { ...rqContext },
+    context: { ...rqContext, session: null },
     defaultPreload: 'intent',
     Wrap: (props: { children: React.ReactNode }) => {
       return (
@@ -22,6 +23,7 @@ export const getRouter = () => {
         </TanstackQuery.Provider>
       )
     },
+    defaultErrorComponent: DefaultCatchBoundary,
     defaultNotFoundComponent: () => <NotFound />,
   })
 

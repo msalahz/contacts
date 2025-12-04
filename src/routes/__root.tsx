@@ -13,6 +13,8 @@ import appCss from '../styles.css?url'
 import type { QueryClient } from '@tanstack/react-query'
 
 import { cn } from '@/features/abstractions/lib/utils'
+import { Session } from '@/integrations/better-auth/auth-client'
+import { findSessionFn } from '@/features/users/functions/find-session-fn'
 import { Header } from '@/features/abstractions/components/reused/header'
 import { Footer } from '@/features/abstractions/components/reused/footer'
 import { useTheme } from '@/features/abstractions/components/reused/theme'
@@ -21,14 +23,21 @@ import { NotFound } from '@/features/abstractions/components/reused/not-found'
 
 interface MyRouterContext {
   queryClient: QueryClient
+  session: Session | null
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async () => {
+    const session = await findSessionFn()
+    return {
+      session,
+    }
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'Contacts App' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
@@ -41,6 +50,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const theme = useTheme()
+  const context = Route.useRouteContext()
 
   return (
     <html lang="en">
@@ -57,7 +67,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       >
         <Header className="h-15">
           <Header.Logo />
-          <Header.Actions />
+          <Header.Actions session={context.session} />
         </Header>
 
         <main className="overflow-auto">{children}</main>
