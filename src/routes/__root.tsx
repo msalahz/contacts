@@ -49,7 +49,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body
-        // suppressHydrationWarning
+        suppressHydrationWarning
         className={cn(
           'bg-background text-foreground grid h-screen grid-rows-[auto_1fr_auto] overflow-hidden',
           theme === 'dark' ? 'dark' : '',
