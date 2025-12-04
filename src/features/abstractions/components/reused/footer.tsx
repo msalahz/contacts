@@ -6,7 +6,7 @@ export function Footer(props: React.ComponentProps<'footer'>) {
       {...props}
       data-slot="footer"
       className={cn(
-        'p-4 text-center text-sm text-muted-foreground bg-primary/5',
+        'p-4 text-center text-sm text-muted-foreground bg-primary/5 border-t border-top-black/10 dark:border-top-white/10',
         props.className,
       )}
     />

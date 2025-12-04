@@ -45,7 +45,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body
         suppressHydrationWarning
-        className="overflow-hidden grid grid-rows-[auto_1fr_auto] h-screen bg-background text-foreground"
+        className="dark overflow-hidden grid grid-rows-[auto_1fr_auto] h-screen bg-background text-foreground"
       >
         <Header className="h-15">
           <Header.Logo />
