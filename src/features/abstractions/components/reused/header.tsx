@@ -2,8 +2,9 @@ import { Link } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useMutation } from '@tanstack/react-query'
 
+import type { Session } from '@/integrations/better-auth/auth-client'
+
 import { cn } from '@/features/abstractions/lib/utils'
-import { Session } from '@/integrations/better-auth/auth-client'
 import { signOutFn } from '@/features/users/functions/sign-out-fn'
 import { Logo } from '@/features/abstractions/components/reused/logo'
 import { Theme } from '@/features/abstractions/components/reused/theme'
