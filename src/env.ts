@@ -10,7 +10,10 @@ export const senv = createEnv({
     DATABASE_URL: z.url(),
     BETTER_AUTH_URL: z.string(),
     BETTER_AUTH_SECRET: z.string(),
-    ENABLE_BETTER_AUTH_OPENAPI: z.boolean().default(false),
+    ENABLE_BETTER_AUTH_OPENAPI: z
+      .string()
+      .transform((val) => val === 'true')
+      .default(false),
   },
   /**
    * What object holds the environment variables at runtime. This is usually
@@ -45,9 +48,7 @@ export const cenv = createEnv({
    */
   clientPrefix: 'VITE_',
 
-  client: {
-    VITE_BETTER_AUTH_BASE_URL: z.string(),
-  },
+  client: {},
 
   /**
    * What object holds the environment variables at runtime. This is usually
