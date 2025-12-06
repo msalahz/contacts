@@ -66,7 +66,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body
         suppressHydrationWarning
         className={cn(
-          'bg-background text-foreground grid h-screen grid-rows-[auto_1fr_auto] overflow-hidden',
+          'bg-background text-foreground grid h-screen grid-rows-[auto_1fr] overflow-hidden',
           theme === 'dark' ? 'dark' : '',
         )}
       >
@@ -77,11 +77,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           </HeaderActions>
         </Header>
 
-        <main className="overflow-auto">{children}</main>
+        <main className="flex min-h-0 flex-col overflow-auto">
+          <div className="flex-1">{children}</div>
 
-        <Footer>
-          <Footer.Copyrights />
-        </Footer>
+          <Footer className="mt-auto w-full">
+            <Footer.Copyrights />
+          </Footer>
+        </main>
 
         <Toaster closeButton richColors theme="light" />
 
