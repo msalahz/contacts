@@ -22,7 +22,7 @@ function RouteComponent() {
   return (
     <section className="flex min-h-full flex-col items-center justify-center p-6">
       <SigninForm
-        onFromSubmit={async (data: { email: string; password: string }) => {
+        onFormSubmit={async (data: { email: string; password: string }) => {
           await mutateAsync({
             email: data.email,
             password: data.password,

@@ -27,11 +27,11 @@ const formSchema = z.object({
 })
 
 export interface SigninFormProps extends React.ComponentProps<'div'> {
-  onFromSubmit?: (data: { email: string; password: string }) => Promise<void>
+  onFormSubmit?: (data: { email: string; password: string }) => Promise<void>
 }
 
 export function SigninForm({
-  onFromSubmit = noop,
+  onFormSubmit = noop,
   className,
   children,
   ...props
@@ -45,7 +45,7 @@ export function SigninForm({
       onSubmit: formSchema,
     },
     onSubmit({ value }) {
-      return onFromSubmit({
+      return onFormSubmit({
         email: value.email,
         password: value.password,
       })
@@ -70,7 +70,7 @@ export function SigninForm({
             className="space-y-4"
           >
             <FieldGroup>
-              <Field>{children}</Field>
+              {children ? <Field>{children}</Field> : null}
               <Field>
                 <Button variant="outline" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
