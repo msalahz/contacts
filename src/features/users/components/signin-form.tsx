@@ -44,8 +44,8 @@ export function SigninForm({
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit({ value }) {
-      return onFormSubmit({
+    async onSubmit({ value }) {
+      await onFormSubmit({
         email: value.email,
         password: value.password,
       })

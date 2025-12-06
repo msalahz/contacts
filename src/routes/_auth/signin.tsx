@@ -7,7 +7,7 @@ import { AlertBox } from '@/features/abstractions/components/reused/alert-box'
 import { FieldError } from '@/features/abstractions/components/primitives/field'
 import { useSigninEmail } from '@/integrations/better-auth/hooks/use-signin-email'
 
-export const Route = createFileRoute('/signin')({
+export const Route = createFileRoute('/_auth/signin')({
   beforeLoad({ context }) {
     if (context.session) {
       throw redirect({ to: '/console' })
