@@ -6,3 +6,10 @@ import type { ClassValue } from 'clsx'
 export function cn(...inputs: Array<ClassValue>) {
   return twMerge(clsx(inputs))
 }
+
+export function noop(): void
+export function noop(): Promise<void>
+export function noop(): void | Promise<void> {
+  // do nothing or return Promise.resolve() based on context
+  return Promise.resolve()
+}
