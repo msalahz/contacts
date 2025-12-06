@@ -1,9 +1,7 @@
 import { z } from 'zod'
-import { toast } from 'sonner'
 import { Link } from '@tanstack/react-router'
 
-import { cn } from '@/features/abstractions/lib/utils'
-import { authClient } from '@/integrations/better-auth/auth-client'
+import { cn, noop } from '@/features/abstractions/lib/utils'
 import { useAppForm } from '@/integrations/tanstack-form/hooks/form'
 import { Button } from '@/features/abstractions/components/primitives/button'
 import {
@@ -35,10 +33,20 @@ const formSchema = z
     path: ['passwordConfirm'],
   })
 
+export interface SignupFormProps extends React.ComponentProps<'div'> {
+  onFormSubmit?: (data: {
+    name: string
+    email: string
+    password: string
+  }) => Promise<void>
+}
+
 export function SignupForm({
+  onFormSubmit = noop,
   className,
+  children,
   ...props
-}: React.ComponentProps<'div'>) {
+}: SignupFormProps) {
   const form = useAppForm({
     defaultValues: {
       name: '',
@@ -49,22 +57,11 @@ export function SignupForm({
     validators: {
       onSubmit: formSchema,
     },
-    async onSubmit({ value }) {
-      return await authClient.signUp.email({
+    onSubmit({ value }) {
+      return onFormSubmit({
         name: value.name,
         email: value.email,
         password: value.password,
-        callbackURL: '/console',
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success('User signed up successfully')
-          },
-          onError: (ctx) => {
-            toast.error('Signing up failed', {
-              description: ctx.error.message,
-            })
-          },
-        },
       })
     },
   })
@@ -86,6 +83,7 @@ export function SignupForm({
             className="space-y-4"
           >
             <FieldGroup>
+              {children ? <Field>{children}</Field> : null}
               <Field>
                 <Button variant="outline" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
