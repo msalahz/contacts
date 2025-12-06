@@ -1,9 +1,7 @@
 import { z } from 'zod'
-import { toast } from 'sonner'
 import { Link } from '@tanstack/react-router'
 
-import { cn } from '@/features/abstractions/lib/utils'
-import { authClient } from '@/integrations/better-auth/auth-client'
+import { cn, noop } from '@/features/abstractions/lib/utils'
 import { useAppForm } from '@/integrations/tanstack-form/hooks/form'
 import { Button } from '@/features/abstractions/components/primitives/button'
 import {
@@ -28,10 +26,16 @@ const formSchema = z.object({
     .min(10, 'Password must be at least 10 characters long'),
 })
 
+export interface SigninFormProps extends React.ComponentProps<'div'> {
+  onFromSubmit?: (data: { email: string; password: string }) => Promise<void>
+}
+
 export function SigninForm({
+  onFromSubmit = noop,
   className,
+  children,
   ...props
-}: React.ComponentProps<'div'>) {
+}: SigninFormProps) {
   const form = useAppForm({
     defaultValues: {
       email: '',
@@ -40,22 +44,10 @@ export function SigninForm({
     validators: {
       onSubmit: formSchema,
     },
-    async onSubmit({ value }) {
-      return await authClient.signIn.email({
+    onSubmit({ value }) {
+      return onFromSubmit({
         email: value.email,
         password: value.password,
-        callbackURL: '/console',
-        rememberMe: true,
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success('User signed in successfully')
-          },
-          onError: (ctx) => {
-            toast.error('Signing in failed', {
-              description: ctx.error.message,
-            })
-          },
-        },
       })
     },
   })
@@ -67,6 +59,7 @@ export function SigninForm({
           <CardTitle className="text-xl">Welcome back</CardTitle>
           <CardDescription>Login with your Google account</CardDescription>
         </CardHeader>
+
         <CardContent>
           <form
             onSubmit={(e) => {
@@ -77,6 +70,7 @@ export function SigninForm({
             className="space-y-4"
           >
             <FieldGroup>
+              <Field>{children}</Field>
               <Field>
                 <Button variant="outline" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -101,7 +95,6 @@ export function SigninForm({
                   />
                 )}
               />
-
               <form.AppField
                 name="password"
                 children={(field) => (
@@ -119,7 +112,6 @@ export function SigninForm({
                   />
                 )}
               />
-
               <form.AppForm>
                 <form.SubscribeButton label="Sign in" />
 
@@ -132,6 +124,7 @@ export function SigninForm({
           </form>
         </CardContent>
       </Card>
+
       <FieldDescription className="px-6 text-center">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{' '}
         and <a href="#">Privacy Policy</a>.
