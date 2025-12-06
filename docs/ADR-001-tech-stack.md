@@ -38,6 +38,7 @@ We need to select a modern, performant technology stack for building the Contact
 We will use the following technology stack:
 
 ### Core
+
 - **Build Tool**: Vite
 - **UI Framework**: TanStack Start (Fully type-safe React framework)
 - **Language**: TypeScript
@@ -45,30 +46,36 @@ We will use the following technology stack:
 - **Styling**: Tailwind CSS
 
 ### Data & State
+
 - **Routing**: TanStack Router
 - **Data Caching**: TanStack Query
-- **Data Tables**: TanStack Table *(pending)*
+- **Data Tables**: TanStack Table _(pending)_
 - **Database ORM**: Drizzle ORM with PostgreSQL
 - **Validation**: Zod
 
 ### Authentication
+
 - **Auth Library**: better-auth
 
 ### UI/UX
+
 - **Icons**: Lucide React
 - **Notifications**: Sonner (toast notifications)
 - **Theme**: next-themes (dark/light mode)
 
-### Internationalization *(pending)*
+### Internationalization _(pending)_
+
 - **i18n Library**: react-i18next
 - **RTL/LTR Support**: Tailwind CSS built-in RTL support & Logical Properties
 - **Date/Number Formatting**: Luxon & Intl API (built-in browser support)
 
 ### Testing
+
 - **Unit Testing**: Vitest
-- **E2E Testing**: Playwright *(pending)*
+- **E2E Testing**: Playwright _(pending)_
 
 ### Code Quality
+
 - **Linting**: ESLint
 - **Formatting**: Prettier
 

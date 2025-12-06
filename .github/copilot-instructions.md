@@ -58,13 +58,16 @@ src/
 Remove trailing white spaces! They complicate diffs and are unnecessary.
 
 ❌ **Not Recommended:**
+
 ```typescript
-const name = 'John Smith';__
+const name = 'John Smith'
+__
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const name = 'John Smith';
+const name = 'John Smith'
 ```
 
 > 💡 **Tip**: Configure your editor to trim trailing whitespace on save.
@@ -97,6 +100,7 @@ Document functions with **JSDoc**:
 - `@returns`: document the type and description of a function's return value
 
 **Example:**
+
 ```typescript
 /**
  * @description Adds two numbers together
@@ -105,11 +109,12 @@ Document functions with **JSDoc**:
  * @returns Sum of a and b
  */
 function sum(a: number, b: number): number {
-  return a + b;
+  return a + b
 }
 ```
 
 **Class example:**
+
 ```typescript
 /**
  * @description Represents a book in the library
@@ -117,7 +122,7 @@ function sum(a: number, b: number): number {
 class Book {
   constructor(
     public title: string,
-    public author: string
+    public author: string,
   ) {}
 }
 ```
@@ -127,6 +132,7 @@ class Book {
 Mark todos and action items with `TODO:`.
 
 ✅ **Recommended:**
+
 ```typescript
 // TODO: add validation for email format
 ```
@@ -148,24 +154,26 @@ Order of preference:
 Always use semicolons to avoid subtle bugs.
 
 ❌ **Not Recommended:**
+
 ```typescript
 const foo = () => {
   return true // Missing semicolon
 } // Missing semicolon
 
 function foo() {
-  return true;
-}; // Extra semicolon
+  return true
+} // Extra semicolon
 ```
 
 ✅ **Recommended:**
+
 ```typescript
 const foo = () => {
-  return true;
-};
+  return true
+}
 
 function foo() {
-  return true;
+  return true
 }
 ```
 
@@ -174,18 +182,20 @@ function foo() {
 Don't use wrapper objects for primitives. Type casting is okay.
 
 ❌ **Not Recommended:**
+
 ```typescript
-const x = new Boolean(0);
+const x = new Boolean(0)
 if (x) {
-  alert('hi'); // Shows 'hi' because x is a truthy object
+  alert('hi') // Shows 'hi' because x is a truthy object
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const x = Boolean(0);
+const x = Boolean(0)
 if (x) {
-  alert('hi'); // Won't show because x is false
+  alert('hi') // Won't show because x is false
 }
 ```
 
@@ -194,20 +204,26 @@ if (x) {
 Use closures, but be careful with memory leaks.
 
 ❌ **Not Recommended:**
+
 ```typescript
 function foo(element: HTMLElement, a: number, b: number) {
-  element.onclick = function() { /* uses a and b */ };
+  element.onclick = function () {
+    /* uses a and b */
+  }
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
 function foo(element: HTMLElement, a: number, b: number) {
-  element.onclick = bar(a, b);
+  element.onclick = bar(a, b)
 }
 
 function bar(a: number, b: number) {
-  return function() { /* uses a and b */ };
+  return function () {
+    /* uses a and b */
+  }
 }
 ```
 
@@ -218,25 +234,27 @@ function bar(a: number, b: number) {
 Use `forEach`, `map`, `filter`, or `for...of` for arrays:
 
 ❌ **Not Recommended:**
+
 ```typescript
-const myArray = ['a', 'b', 'c'];
+const myArray = ['a', 'b', 'c']
 for (const index in myArray) {
-  console.log(myArray[index]);
+  console.log(myArray[index])
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const myArray = ['a', 'b', 'c'];
+const myArray = ['a', 'b', 'c']
 
 // forEach
 myArray.forEach((val) => {
-  console.log(val);
-});
+  console.log(val)
+})
 
 // for...of
 for (const val of myArray) {
-  console.log(val);
+  console.log(val)
 }
 ```
 
@@ -245,26 +263,28 @@ for (const val of myArray) {
 Use `Object.entries()`, `Object.keys()`, or `Object.values()`:
 
 ❌ **Not Recommended:**
+
 ```typescript
-const myObj = { firstName: 'Ada', lastName: 'Lovelace' };
+const myObj = { firstName: 'Ada', lastName: 'Lovelace' }
 for (const key in myObj) {
-  console.log(myObj[key]);
+  console.log(myObj[key])
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const myObj = { firstName: 'Ada', lastName: 'Lovelace' };
+const myObj = { firstName: 'Ada', lastName: 'Lovelace' }
 
 // Object.entries
 Object.entries(myObj).forEach(([key, value]) => {
-  console.log(`${key}: ${value}`);
-});
+  console.log(`${key}: ${value}`)
+})
 
 // Or with hasOwnProperty check if using for...in
 for (const key in myObj) {
   if (Object.hasOwn(myObj, key)) {
-    console.log(myObj[key]);
+    console.log(myObj[key])
   }
 }
 ```
@@ -274,17 +294,20 @@ for (const key in myObj) {
 Use template literals for multiline strings:
 
 ❌ **Not Recommended:**
+
 ```typescript
-const myString = 'A rather long string of English text, an error message ' +
-                 'actually that just keeps going and going -- an error ' +
-                 'message that is really really long.';
+const myString =
+  'A rather long string of English text, an error message ' +
+  'actually that just keeps going and going -- an error ' +
+  'message that is really really long.'
 ```
 
 ✅ **Recommended:**
+
 ```typescript
 const myString = `A rather long string of English text, an error message
 actually that just keeps going and going -- an error
-message that is really really long.`;
+message that is really really long.`
 ```
 
 ### 🎁 Array and Object Literals
@@ -292,16 +315,18 @@ message that is really really long.`;
 Use literals instead of constructors:
 
 ❌ **Not Recommended:**
+
 ```typescript
-const myArray = new Array(x1, x2, x3);
-const myObject = new Object();
-myObject.a = 0;
+const myArray = new Array(x1, x2, x3)
+const myObject = new Object()
+myObject.a = 0
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const myArray = [x1, x2, x3];
-const myObject = { a: 0 };
+const myArray = [x1, x2, x3]
+const myObject = { a: 0 }
 ```
 
 ---
@@ -310,19 +335,20 @@ const myObject = { a: 0 };
 
 ### 🏷️ Naming Conventions
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Functions | camelCase | `getUserById` |
-| Variables | camelCase | `userName` |
-| Classes | PascalCase | `UserService` |
-| Constants | UPPER_SNAKE_CASE | `MAX_RETRIES` |
-| Files | lowercase-hyphen | `user-service.ts` |
+| Type      | Convention       | Example           |
+| --------- | ---------------- | ----------------- |
+| Functions | camelCase        | `getUserById`     |
+| Variables | camelCase        | `userName`        |
+| Classes   | PascalCase       | `UserService`     |
+| Constants | UPPER_SNAKE_CASE | `MAX_RETRIES`     |
+| Files     | lowercase-hyphen | `user-service.ts` |
 
 ### 🎨 Code Formatting
 
 Always start curly braces on the same line:
 
 ✅ **Recommended:**
+
 ```typescript
 if (something) {
   // do something
@@ -334,26 +360,24 @@ if (something) {
 Single-line array and object initializers:
 
 ✅ **Recommended:**
+
 ```typescript
-const array = [1, 2, 3];
-const object = { a: 1, b: 2, c: 3 };
+const array = [1, 2, 3]
+const object = { a: 1, b: 2, c: 3 }
 ```
 
 Multiline array and object initializers:
 
 ✅ **Recommended:**
+
 ```typescript
-const array = [
-  'joe@email.com',
-  'sal@email.com',
-  'murr@email.com'
-];
+const array = ['joe@email.com', 'sal@email.com', 'murr@email.com']
 
 const object = {
   id: 'foo',
   class: 'foo-important',
-  name: 'notification'
-};
+  name: 'notification',
+}
 ```
 
 ### 📝 Strings
@@ -361,8 +385,9 @@ const object = {
 Use single quotes for strings. Use double quotes inside HTML strings:
 
 ✅ **Recommended:**
+
 ```typescript
-const element = '<button class="btn">Click Me</button>';
+const element = '<button class="btn">Click Me</button>'
 ```
 
 > ⚠️ **Exception**: JSON requires double quotes per specification.
@@ -374,12 +399,14 @@ const element = '<button class="btn">Click Me</button>';
 ### ✅ Truthy and Falsy Values
 
 **Falsy values:**
+
 - `null`
 - `undefined`
 - `''` (empty string)
 - `0`
 
 **Truthy values (be careful!):**
+
 - `'0'` (string)
 - `[]` (empty array)
 - `{}` (empty object)
@@ -389,17 +416,19 @@ const element = '<button class="btn">Click Me</button>';
 Use for simple conditionals:
 
 ❌ **Not Recommended:**
+
 ```typescript
 if (val) {
-  return foo();
+  return foo()
 } else {
-  return bar();
+  return bar()
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-return val ? foo() : bar();
+return val ? foo() : bar()
 ```
 
 ### ⚡ Short-circuit Evaluation
@@ -407,18 +436,20 @@ return val ? foo() : bar();
 Use `||` for default values and `&&` for conditional execution:
 
 ❌ **Not Recommended:**
+
 ```typescript
-let theName;
+let theName
 if (name) {
-  theName = name;
+  theName = name
 } else {
-  theName = 'John';
+  theName = 'John'
 }
 ```
 
 ✅ **Recommended:**
+
 ```typescript
-const theName = name || 'John';
+const theName = name || 'John'
 ```
 
 ### 🆕 Modern JavaScript/TypeScript Patterns
@@ -428,19 +459,19 @@ const theName = name || 'John';
 ```typescript
 // Instead of
 if (user && user.address && user.address.city) {
-  console.log(user.address.city);
+  console.log(user.address.city)
 }
 
 // Use
-console.log(user?.address?.city);
+console.log(user?.address?.city)
 ```
 
 #### Nullish Coalescing (`??`)
 
 ```typescript
 // Only falls back for null/undefined, not falsy values
-const count = userCount ?? 0;
-const name = userName ?? 'Anonymous';
+const count = userCount ?? 0
+const name = userName ?? 'Anonymous'
 ```
 
 #### Async/Await
@@ -449,11 +480,11 @@ const name = userName ?? 'Anonymous';
 // Instead of .then() chains
 async function fetchUser(id: string): Promise<User> {
   try {
-    const response = await fetch(`/api/users/${id}`);
-    return await response.json();
+    const response = await fetch(`/api/users/${id}`)
+    return await response.json()
   } catch (error) {
-    console.error('Failed to fetch user:', error);
-    throw error;
+    console.error('Failed to fetch user:', error)
+    throw error
   }
 }
 ```
@@ -467,6 +498,7 @@ async function fetchUser(id: string): Promise<User> {
 Separate type imports from regular imports for clarity:
 
 ✅ **Recommended:**
+
 ```typescript
 import { useMutation } from '@tanstack/react-query'
 
@@ -479,6 +511,7 @@ import type { Session } from '@/integrations/better-auth/auth-client'
 Use `React.ComponentProps` for extending native element props:
 
 ✅ **Recommended:**
+
 ```typescript
 export interface ButtonProps extends React.ComponentProps<'button'> {
   variant?: 'primary' | 'secondary'
@@ -495,14 +528,20 @@ export function Button({ variant, isLoading, ...props }: ButtonProps) {
 Prefer named exports over default exports:
 
 ✅ **Recommended:**
+
 ```typescript
-export function MyComponent() { /* ... */ }
+export function MyComponent() {
+  /* ... */
+}
 export { MyComponent }
 ```
 
 ❌ **Not Recommended:**
+
 ```typescript
-export default function MyComponent() { /* ... */ }
+export default function MyComponent() {
+  /* ... */
+}
 ```
 
 ### 🎨 Conditional Rendering
@@ -510,6 +549,7 @@ export default function MyComponent() { /* ... */ }
 Use ternary for inline conditionals and `null` checks:
 
 ✅ **Recommended:**
+
 ```typescript
 {error ? <ErrorMessage error={error} /> : null}
 {children ? <Field>{children}</Field> : null}
@@ -520,6 +560,7 @@ Use ternary for inline conditionals and `null` checks:
 Prefix custom hooks with `use` and return mutations/queries from TanStack:
 
 ✅ **Recommended:**
+
 ```typescript
 export function useSigninEmail() {
   return useMutation({
@@ -538,6 +579,7 @@ export function useSigninEmail() {
 Use Zod for form and data validation:
 
 ✅ **Recommended:**
+
 ```typescript
 import { z } from 'zod'
 
@@ -555,6 +597,7 @@ const formSchema = z.object({
 Use Drizzle ORM patterns for database schemas:
 
 ✅ **Recommended:**
+
 ```typescript
 import { pgTable, text, timestamp, boolean } from 'drizzle-orm/pg-core'
 import { v7 as uuidv7 } from 'uuid'
@@ -577,6 +620,7 @@ export const contact = pgTable('contact', {
 Use `@t3-oss/env-core` for type-safe environment variables:
 
 ✅ **Recommended:**
+
 ```typescript
 import { z } from 'zod'
 import { createEnv } from '@t3-oss/env-core'
@@ -596,6 +640,7 @@ export const senv = createEnv({
 Use TanStack Start server functions:
 
 ✅ **Recommended:**
+
 ```typescript
 import { createServerFn } from '@tanstack/react-start'
 import { getRequest } from '@tanstack/react-start/server'
@@ -611,6 +656,7 @@ export const findSessionFn = createServerFn({ method: 'GET' }).handler(() => {
 Use TanStack Router patterns:
 
 ✅ **Recommended:**
+
 ```typescript
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
@@ -633,6 +679,7 @@ function RouteComponent() {
 Use the custom `useAppForm` hook with Zod validation:
 
 ✅ **Recommended:**
+
 ```typescript
 const form = useAppForm({
   defaultValues: {
@@ -653,6 +700,7 @@ const form = useAppForm({
 Use CVA for component variants:
 
 ✅ **Recommended:**
+
 ```typescript
 import { cva } from 'class-variance-authority'
 import type { VariantProps } from 'class-variance-authority'
@@ -681,6 +729,7 @@ const buttonVariants = cva('base-classes', {
 Use `@/` alias for imports from `src/`:
 
 ✅ **Recommended:**
+
 ```typescript
 import { cn } from '@/features/abstractions/lib/utils'
 import { Button } from '@/features/abstractions/components/primitives/button'
