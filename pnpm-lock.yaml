@@ -162,6 +162,9 @@ importers:
       dotenv:
         specifier: ^16.0.0
         version: 16.6.1
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.1(jiti@2.6.1)
       eslint-config-prettier:
         specifier: ^10.1.8
         version: 10.1.8(eslint@9.39.1(jiti@2.6.1))
