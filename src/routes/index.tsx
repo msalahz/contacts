@@ -1,23 +1,23 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import {
-  Users,
-  Search,
-  RefreshCw,
-  Share2,
   ArrowUpDown,
   FolderHeart,
-  Star,
   GitMerge,
   QrCode,
+  RefreshCw,
+  Search,
+  Share2,
+  Star,
+  Users,
 } from 'lucide-react'
 
 import { findSessionFn } from '@/features/users/functions/find-session-fn'
 import { Button } from '@/features/abstractions/components/primitives/button'
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from '@/features/abstractions/components/primitives/card'
 
 export const Route = createFileRoute('/')({
