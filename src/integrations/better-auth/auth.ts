@@ -27,11 +27,19 @@ export const auth = betterAuth({
     requireEmailVerification: false,
     revokeSessionsOnPasswordReset: true,
 
+    sendResetPassword({ url, user, token }) {
+      console.log(
+        `Send password reset email to ${user.email} with token: ${token} and url: ${url}`,
+      )
+      return Promise.resolve()
+    },
+
     rateLimit: {
       enabled: true,
       window: 60, // time window in seconds
       max: 100, // max requests in the window
     },
+
     telemetry: false,
   },
 })
