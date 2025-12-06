@@ -1,13 +1,13 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 import { SignupForm } from '@/features/users/components/signup-form'
-import { useSignupEmail } from '@/integrations/better-auth/hooks/use-signup-email'
-import { noop } from '@/features/abstractions/lib/utils'
 import { AlertBox } from '@/features/abstractions/components/reused/alert-box'
 import { ItemTitle } from '@/features/abstractions/components/primitives/item'
 import { FieldError } from '@/features/abstractions/components/primitives/field'
+import { useSignupEmail } from '@/integrations/better-auth/hooks/use-signup-email'
+import { noop } from '@/features/abstractions/lib/utils'
 
-export const Route = createFileRoute('/signup')({
+export const Route = createFileRoute('/_auth/signup')({
   beforeLoad({ context }) {
     if (context.session) {
       throw redirect({ to: '/console' })
@@ -35,7 +35,7 @@ function RouteComponent() {
               callbackURL: '/console',
             },
             {
-              onSuccess: () => {
+              onSuccess() {
                 throw redirect({ to: '/console' })
               },
             },

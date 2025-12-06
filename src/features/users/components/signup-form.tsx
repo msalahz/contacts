@@ -57,8 +57,8 @@ export function SignupForm({
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit({ value }) {
-      return onFormSubmit({
+    async onSubmit({ value }) {
+      await onFormSubmit({
         name: value.name,
         email: value.email,
         password: value.password,
