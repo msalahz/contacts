@@ -1,315 +1,309 @@
-Welcome to Contacts app!
+# 📇 Contacts
 
-# Getting Started
+A simple, fast and secure contact management application that helps users organize all their personal and professional
+contacts in one place.
 
-To run this application:
+🔗 **[Live Demo](https://contacts-ms.netlify.app)**
+
+---
+
+## 📑 Table of Contents
+
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Scripts](#-scripts)
+- [Documentation](#-documentation)
+- [Dependencies](#-dependencies)
+- [License](#-license)
+
+---
+
+## ✨ Features
+
+| Feature              | Status         | Description                                                  |
+|----------------------|----------------|--------------------------------------------------------------|
+| Authentication       | ✅ Implemented  | Secure signup, signin, password reset and session management |
+| Theme Support        | 🚧 In Progress | Dark/light mode with system preference detection             |
+| Organize Contacts    | 📅 Coming Soon | CRUD operations for contacts                                 |
+| Search & Filter      | 📅 Coming Soon | Real-time search with advanced filtering                     |
+| Sync                 | 📅 Coming Soon | Cross-device synchronization                                 |
+| Share                | 📅 Coming Soon | Share contacts via link, email or messaging                  |
+| Import/Export        | 📅 Coming Soon | CSV, vCard and JSON support                                  |
+| Groups/Labels        | 📅 Coming Soon | Custom groups with color coding                              |
+| Favorites            | 📅 Coming Soon | Quick access to important contacts                           |
+| Duplicate Detection  | 📅 Coming Soon | Find and merge duplicate contacts                            |
+| QR Code Sharing      | 📅 Coming Soon | Share contact info via scannable QR code                     |
+| Internationalization | 📅 Coming Soon | Bilingual support (English/Arabic) with RTL/LTR layout       |
+
+---
+
+## 🛠️ Tech Stack
+
+### Core
+
+| Technology     | Purpose                    |
+|----------------|----------------------------|
+| TypeScript     | Type-safe JavaScript       |
+| Vite           | Build tool & dev server    |
+| TanStack Start | Full-stack React framework |
+| React 19       | UI library                 |
+
+### Data & State
+
+| Technology      | Purpose                   |
+|-----------------|---------------------------|
+| TanStack Router | Type-safe routing         |
+| TanStack Query  | Data fetching & caching   |
+| TanStack Store  | State management          |
+| TanStack Form   | Form handling             |
+| Drizzle ORM     | Database ORM (PostgreSQL) |
+| Zod             | Schema validation         |
+
+### UI/UX
+
+| Technology     | Purpose               |
+|----------------|-----------------------|
+| Tailwind CSS 4 | Utility-first styling |
+| shadcn/ui      | Component library     |
+| Radix UI       | Accessible primitives |
+| Lucide React   | Icons                 |
+| Sonner         | Toast notifications   |
+| next-themes    | Theme management      |
+| CVA            | Component variants    |
+
+### Authentication
+
+| Technology  | Purpose      |
+|-------------|--------------|
+| better-auth | Auth library |
+
+### Testing & Quality
+
+| Technology      | Purpose           |
+|-----------------|-------------------|
+| Vitest          | Unit testing      |
+| Testing Library | Component testing |
+| ESLint          | Linting           |
+| Prettier        | Code formatting   |
+
+---
+
+## 📁 Project Structure
+
+```
+contacts/
+├── .github/                       # GitHub configuration
+│   ├── copilot-instructions.md    # Copilot code generation guidelines
+│   ├── git-commit-instructions.md # Commit message conventions
+│   └── workflows/
+│       └── ci.yml                 # CI/CD pipeline configuration
+├── docs/                          # Documentation
+│   ├── ADR-001-tech-stack.md      # Architecture decision record
+│   └── PRD.md                     # Product requirements document
+├── drizzle/                       # Database migrations
+│   └── meta/                      # Migration metadata
+├── public/                        # Static assets
+│   ├── favicon.svg
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── db/                        # Database configuration
+│   │   ├── index.ts               # Database client
+│   │   └── schemas/               # Drizzle ORM schemas
+│   │       ├── auth.ts            # Auth-related tables
+│   │       └── contacts.ts        # Contact tables
+│   ├── features/                  # Feature modules
+│   │   ├── abstractions/          # Shared UI components
+│   │   │   ├── components/
+│   │   │   │   ├── primitives/    # Base UI components (button, input, etc.)
+│   │   │   │   └── reused/        # Composite components (header, footer, etc.)
+│   │   │   └── lib/               # Utility functions
+│   │   │       ├── utils.ts       # cn() and helpers
+│   │   │       └── utils.test.ts  # Unit tests
+│   │   └── users/                 # User feature module
+│   │       ├── components/        # Auth forms
+│   │       └── functions/         # Server functions
+│   ├── integrations/              # Third-party integrations
+│   │   ├── better-auth/           # Auth integration
+│   │   │   ├── auth.ts            # Server auth config
+│   │   │   ├── auth-client.ts     # Client auth config
+│   │   │   ├── hooks/             # Auth mutations
+│   │   │   └── middlewares/       # Auth middlewares
+│   │   ├── tanstack-form/         # Form integration
+│   │   │   ├── components/        # Form field components
+│   │   │   └── hooks/             # useAppForm hook
+│   │   └── tanstack-query/        # Query integration
+│   │       ├── root-provider.tsx  # Query client provider
+│   │       └── devtools.tsx       # Query devtools
+│   ├── routes/                    # TanStack Router routes
+│   │   ├── __root.tsx             # Root layout
+│   │   ├── index.tsx              # Home page
+│   │   ├── _auth/                 # Auth layout routes
+│   │   │   ├── signin.tsx
+│   │   │   ├── signup.tsx
+│   │   │   ├── forgot-password.tsx
+│   │   │   └── reset-password.tsx
+│   │   ├── api/auth/              # Auth API routes
+│   │   └── console/               # Protected routes
+│   ├── env.ts                     # Type-safe environment variables
+│   ├── router.tsx                 # Router configuration
+│   ├── routeTree.gen.ts           # Auto-generated route tree
+│   └── styles.css                 # Global styles
+├── components.json                # shadcn/ui config
+├── drizzle.config.ts              # Drizzle ORM config
+├── eslint.config.js               # ESLint config
+├── package.json                   # Dependencies & scripts
+├── prettier.config.js             # Prettier config
+├── tsconfig.json                  # TypeScript config
+└── vite.config.ts                 # Vite config
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- pnpm 9+
+- PostgreSQL database
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/contacts.git
+cd contacts
+
+# Install dependencies
 pnpm install
-pnpm start
 ```
 
-# Building For Production
+### Environment Variables
 
-To build this application for production:
+Copy the example environment file and configure your variables:
 
 ```bash
-pnpm build
+cp .env.example .env.local
 ```
 
-## Testing
+Then fill in the required environment variables:
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+| Variable                     | Description                                            | Required |
+|------------------------------|--------------------------------------------------------|----------|
+| `DATABASE_URL`               | PostgreSQL connection string                           | ✅        |
+| `BETTER_AUTH_SECRET`         | Secret key for authentication                          | ✅        |
+| `BETTER_AUTH_URL`            | Base URL of your app (e.g., `http://localhost:3000`)   | ✅        |
+| `ENABLE_BETTER_AUTH_OPENAPI` | Enable OpenAPI docs (`true` for dev, `false` for prod) | ❌        |
+| `VITE_BETTER_AUTH_BASE_URL`  | Client-side base URL of your app                       | ✅        |
+
+### Running the App
 
 ```bash
-pnpm test
+# Run database migrations
+pnpm db:migrate
+
+# Start the development server
+pnpm dev
 ```
 
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-## Linting & Formatting
-
-This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
-
-```bash
-pnpm lint
-pnpm format
-pnpm check
-```
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpx shadcn@latest add button
-```
-
-## T3Env
-
-- You can use T3Env to add type safety to your environment variables.
-- Add Environment variables to the `src/env.mjs` file.
-- Use the environment variables in your code.
-
-### Usage
-
-```ts
-import { env } from '@/env'
-
-console.log(env.VITE_APP_TITLE)
-```
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add another a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from '@tanstack/react-router'
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import { Link } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/people',
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json() as Promise<{
-      results: {
-        name: string
-      }[]
-    }>
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData()
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    )
-  },
-})
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
-
-```bash
-pnpm add @tanstack/react-query @tanstack/react-query-devtools
-```
-
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
-
-```tsx
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
-// ...
-
-const queryClient = new QueryClient()
-
-// ...
-
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement)
-
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>,
-  )
-}
-```
-
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from '@tanstack/react-query'
-
-import './App.css'
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ['people'],
-    queryFn: () =>
-      fetch('https://swapi.dev/api/people')
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  })
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-export default App
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
-```bash
-pnpm add @tanstack/store
-```
-
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
-
-```tsx
-import { useStore } from '@tanstack/react-store'
-import { Store } from '@tanstack/store'
-import './App.css'
-
-const countStore = new Store(0)
-
-function App() {
-  const count = useStore(countStore)
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  )
-}
-
-export default App
-```
-
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
-
-Let's check this out by doubling the count using derived state.
-
-```tsx
-import { useStore } from '@tanstack/react-store'
-import { Store, Derived } from '@tanstack/store'
-import './App.css'
-
-const countStore = new Store(0)
-
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-})
-doubledStore.mount()
-
-function App() {
-  const count = useStore(countStore)
-  const doubledCount = useStore(doubledStore)
-
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  )
-}
-
-export default App
-```
-
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
-
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
-
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+The app will be running at `http://localhost:3000`.
+
+---
+
+## 📜 Scripts
+
+| Script             | Description                          |
+|--------------------|--------------------------------------|
+| `pnpm dev`         | Start development server (port 3000) |
+| `pnpm build`       | Build for production                 |
+| `pnpm serve`       | Preview production build             |
+| `pnpm test`        | Run unit tests                       |
+| `pnpm lint`        | Lint codebase                        |
+| `pnpm format`      | Format code with Prettier            |
+| `pnpm check`       | Format and lint with auto-fix        |
+| `pnpm typecheck`   | Run TypeScript type checking         |
+| `pnpm db:generate` | Generate database migrations         |
+| `pnpm db:migrate`  | Run database migrations              |
+| `pnpm db:push`     | Push schema changes to database      |
+| `pnpm db:studio`   | Open Drizzle Studio                  |
+
+---
+
+## 📖 Documentation
+
+### Project Documentation
+
+| Document                                       | Description                                                |
+|------------------------------------------------|------------------------------------------------------------|
+| [Product Requirements (PRD)](./docs/PRD.md)    | Feature specifications, user stories and requirements      |
+| [Tech Stack ADR](./docs/ADR-001-tech-stack.md) | Architecture decision record explaining technology choices |
+
+### GitHub Configuration
+
+| File                                                            | Description                                                           |
+|-----------------------------------------------------------------|-----------------------------------------------------------------------|
+| [Copilot Instructions](./.github/copilot-instructions.md)       | Code generation guidelines and project conventions for GitHub Copilot |
+| [Git Commit Instructions](./.github/git-commit-instructions.md) | Conventional commit message format and guidelines                     |
+| [CI Workflow](./.github/workflows/ci.yml)                       | GitHub Actions workflow for linting, testing and building             |
+
+### CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration. The pipeline runs on every push and pull request to `main`:
+
+- **Linting** – ESLint code quality checks
+- **Formatting** – Prettier format verification
+- **Type Check** – TypeScript type validation
+- **Tests** – Vitest unit test execution
+- **Build** – Production build verification
+
+---
+
+## 📦 Dependencies
+
+### Production
+
+| Package                    | Version  | Description                |
+|----------------------------|----------|----------------------------|
+| `react`                    | ^19.2.1  | UI library                 |
+| `react-dom`                | ^19.2.1  | React DOM renderer         |
+| `@tanstack/react-start`    | ^1.132.0 | Full-stack React framework |
+| `@tanstack/react-router`   | ^1.132.0 | Type-safe routing          |
+| `@tanstack/react-query`    | ^5.66.5  | Data fetching & caching    |
+| `@tanstack/react-form`     | ^1.0.0   | Form handling              |
+| `@tanstack/react-store`    | ^0.7.0   | State management           |
+| `drizzle-orm`              | ^0.39.0  | Database ORM               |
+| `pg`                       | ^8.11.0  | PostgreSQL client          |
+| `better-auth`              | ^1.4.5   | Authentication library     |
+| `zod`                      | ^4.1.11  | Schema validation          |
+| `tailwindcss`              | ^4.0.6   | CSS framework              |
+| `class-variance-authority` | ^0.7.1   | Component variants         |
+| `clsx`                     | ^2.1.1   | Class name utility         |
+| `tailwind-merge`           | ^3.0.2   | Tailwind class merging     |
+| `@radix-ui/*`              | various  | Accessible UI primitives   |
+| `lucide-react`             | ^0.544.0 | Icon library               |
+| `sonner`                   | ^2.0.7   | Toast notifications        |
+| `next-themes`              | ^0.4.6   | Theme management           |
+| `@t3-oss/env-core`         | ^0.13.8  | Type-safe env variables    |
+| `uuid`                     | ^13.0.0  | UUID generation            |
+
+### Development
+
+| Package                               | Version | Description         |
+|---------------------------------------|---------|---------------------|
+| `typescript`                          | ^5.7.2  | TypeScript compiler |
+| `vite`                                | ^7.1.7  | Build tool          |
+| `vitest`                              | ^3.0.5  | Test runner         |
+| `@testing-library/react`              | ^16.2.0 | Component testing   |
+| `eslint`                              | ^9.39.1 | Linting             |
+| `prettier`                            | ^3.5.3  | Code formatting     |
+| `drizzle-kit`                         | ^0.30.0 | Drizzle CLI tools   |
+| `@netlify/vite-plugin-tanstack-start` | ^1.2.2  | Netlify deployment  |
+
+---
+
+## 📄 License
+
+This project is private.
