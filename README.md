@@ -3,7 +3,7 @@
 A simple, fast and secure contact management application that helps users organize all their personal and professional
 contacts in one place.
 
-🔗 **[Live Demo](https://contacts-ms.netlify.app)**
+🔗 **[Live Demo](https://contacts.consultin.dev/)**
 
 ---
 
