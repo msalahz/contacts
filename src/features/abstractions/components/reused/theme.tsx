@@ -16,6 +16,8 @@ export interface ThemeStoreState {
   theme: Theme
 }
 
+export const defaultThemeState: ThemeStoreState = { theme: 'dark' }
+
 export const setThemeCookieFn = createServerFn()
   .inputValidator(themeSchema)
   .handler(({ data }) => {
@@ -27,7 +29,7 @@ export const setThemeCookieFn = createServerFn()
 
 export const getThemeCookieFn = createServerFn().handler(() => {
   const theme = getCookie('theme')
-  return themeSchema.parse(theme ?? 'dark')
+  return themeSchema.safeParse(theme).data
 })
 
 export function ThemeToggle({
@@ -43,8 +45,8 @@ export function ThemeToggle({
       variant="outline"
       onClick={() => onChange(theme === 'light' ? 'dark' : 'light')}
     >
-      <MoonIcon className={cn(theme === 'dark' ? 'hidden' : 'block')} />
-      <SunIcon className={cn(theme === 'light' ? 'hidden' : 'block')} />
+      <MoonIcon className={cn(theme === 'light' ? 'hidden' : 'block')} />
+      <SunIcon className={cn(theme === 'dark' ? 'hidden' : 'block')} />
     </Button>
   )
 }
@@ -52,16 +54,16 @@ export function ThemeToggle({
 export function useTheme(initialState?: ThemeStoreState) {
   const setThemeCookie = useServerFn(setThemeCookieFn)
   const { mutate } = useMutation({
-    mutationKey: ['setting-theme'],
+    mutationKey: ['set-theme-cookie'],
     mutationFn: setThemeCookie,
   })
-  const defaultState: ThemeStoreState = { theme: 'dark' }
-  const store = new Store<ThemeStoreState>(initialState ?? defaultState)
+
+  const store = new Store<ThemeStoreState>(initialState ?? defaultThemeState)
   const theme = useStore(store, (state) => state.theme)
 
   function setTheme(newTheme: Theme) {
-    store.setState((state) => ({ ...state, theme: newTheme }))
     mutate({ data: newTheme })
+    store.setState((state) => ({ ...state, theme: newTheme }))
   }
 
   return { store, theme, setTheme }
