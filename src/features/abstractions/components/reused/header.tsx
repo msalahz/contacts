@@ -3,11 +3,11 @@ import { useServerFn } from '@tanstack/react-start'
 import { useMutation } from '@tanstack/react-query'
 
 import type { Session } from '@/integrations/better-auth/auth-client'
+import type { Theme } from '@/features/abstractions/components/reused/theme'
 
 import { cn } from '@/features/abstractions/lib/utils'
 import { signOutFn } from '@/features/users/functions/sign-out-fn'
 import { Logo } from '@/features/abstractions/components/reused/logo'
-import { Theme } from '@/features/abstractions/components/reused/theme'
 import { Button } from '@/features/abstractions/components/primitives/button'
 import { Spinner } from '@/features/abstractions/components/primitives/spinner'
 
@@ -53,32 +53,11 @@ export function HeaderSignOutButton() {
 
 export function HeaderActions({
   children,
-  session,
   ...props
-}: React.ComponentProps<'div'> & { session: Session | null }) {
+}: React.ComponentProps<'div'> & { session: Session | null; theme?: Theme }) {
   return (
     <div data-slot="header-actions" className="flex items-center justify-end gap-2" {...props}>
-      {session?.user ? (
-        <>
-          <span className="hidden italic lg:block">Welcome, {session.user.name}</span>
-          {children}
-          <Button asChild className="min-w-25">
-            <Link to="/console">Go to Console</Link>
-          </Button>
-        </>
-      ) : (
-        <>
-          <Button asChild variant="outline" className="min-w-25">
-            <Link to="/signin">Signin</Link>
-          </Button>
-
-          <Button asChild className="min-w-25">
-            <Link to="/signup">Signup</Link>
-          </Button>
-        </>
-      )}
-
-      <Theme />
+      {children}
     </div>
   )
 }
