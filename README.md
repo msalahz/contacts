@@ -23,8 +23,8 @@ contacts in one place.
 ## ✨ Features
 
 | Feature              | Status         | Description                                                  |
-|----------------------|----------------|--------------------------------------------------------------|
-| Authentication       | ✅ Implemented  | Secure signup, signin, password reset and session management |
+| -------------------- | -------------- | ------------------------------------------------------------ |
+| Authentication       | ✅ Implemented | Secure signup, signin, password reset and session management |
 | Theme Support        | 🚧 In Progress | Dark/light mode with system preference detection             |
 | Organize Contacts    | 📅 Coming Soon | CRUD operations for contacts                                 |
 | Search & Filter      | 📅 Coming Soon | Real-time search with advanced filtering                     |
@@ -44,7 +44,7 @@ contacts in one place.
 ### Core
 
 | Technology     | Purpose                    |
-|----------------|----------------------------|
+| -------------- | -------------------------- |
 | TypeScript     | Type-safe JavaScript       |
 | Vite           | Build tool & dev server    |
 | TanStack Start | Full-stack React framework |
@@ -53,7 +53,7 @@ contacts in one place.
 ### Data & State
 
 | Technology      | Purpose                   |
-|-----------------|---------------------------|
+| --------------- | ------------------------- |
 | TanStack Router | Type-safe routing         |
 | TanStack Query  | Data fetching & caching   |
 | TanStack Store  | State management          |
@@ -64,7 +64,7 @@ contacts in one place.
 ### UI/UX
 
 | Technology     | Purpose               |
-|----------------|-----------------------|
+| -------------- | --------------------- |
 | Tailwind CSS 4 | Utility-first styling |
 | shadcn/ui      | Component library     |
 | Radix UI       | Accessible primitives |
@@ -76,13 +76,13 @@ contacts in one place.
 ### Authentication
 
 | Technology  | Purpose      |
-|-------------|--------------|
+| ----------- | ------------ |
 | better-auth | Auth library |
 
 ### Testing & Quality
 
 | Technology      | Purpose           |
-|-----------------|-------------------|
+| --------------- | ----------------- |
 | Vitest          | Unit testing      |
 | Testing Library | Component testing |
 | ESLint          | Linting           |
@@ -192,12 +192,12 @@ cp .env.example .env.local
 Then fill in the required environment variables:
 
 | Variable                     | Description                                            | Required |
-|------------------------------|--------------------------------------------------------|----------|
-| `DATABASE_URL`               | PostgreSQL connection string                           | ✅        |
-| `BETTER_AUTH_SECRET`         | Secret key for authentication                          | ✅        |
-| `BETTER_AUTH_URL`            | Base URL of your app (e.g., `http://localhost:3000`)   | ✅        |
-| `ENABLE_BETTER_AUTH_OPENAPI` | Enable OpenAPI docs (`true` for dev, `false` for prod) | ❌        |
-| `VITE_BETTER_AUTH_BASE_URL`  | Client-side base URL of your app                       | ✅        |
+| ---------------------------- | ------------------------------------------------------ | -------- |
+| `DATABASE_URL`               | PostgreSQL connection string                           | ✅       |
+| `BETTER_AUTH_SECRET`         | Secret key for authentication                          | ✅       |
+| `BETTER_AUTH_URL`            | Base URL of your app (e.g., `http://localhost:3000`)   | ✅       |
+| `ENABLE_BETTER_AUTH_OPENAPI` | Enable OpenAPI docs (`true` for dev, `false` for prod) | ❌       |
+| `VITE_BETTER_AUTH_BASE_URL`  | Client-side base URL of your app                       | ✅       |
 
 ### Running the App
 
@@ -216,7 +216,7 @@ The app will be running at `http://localhost:3000`.
 ## 📜 Scripts
 
 | Script             | Description                          |
-|--------------------|--------------------------------------|
+| ------------------ | ------------------------------------ |
 | `pnpm dev`         | Start development server (port 3000) |
 | `pnpm build`       | Build for production                 |
 | `pnpm serve`       | Preview production build             |
@@ -237,14 +237,14 @@ The app will be running at `http://localhost:3000`.
 ### Project Documentation
 
 | Document                                       | Description                                                |
-|------------------------------------------------|------------------------------------------------------------|
+| ---------------------------------------------- | ---------------------------------------------------------- |
 | [Product Requirements (PRD)](./docs/PRD.md)    | Feature specifications, user stories and requirements      |
 | [Tech Stack ADR](./docs/ADR-001-tech-stack.md) | Architecture decision record explaining technology choices |
 
 ### GitHub Configuration
 
 | File                                                            | Description                                                           |
-|-----------------------------------------------------------------|-----------------------------------------------------------------------|
+| --------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [Copilot Instructions](./.github/copilot-instructions.md)       | Code generation guidelines and project conventions for GitHub Copilot |
 | [Git Commit Instructions](./.github/git-commit-instructions.md) | Conventional commit message format and guidelines                     |
 | [CI Workflow](./.github/workflows/ci.yml)                       | GitHub Actions workflow for linting, testing and building             |
@@ -266,7 +266,7 @@ The project uses GitHub Actions for continuous integration. The pipeline runs on
 ### Production
 
 | Package                    | Version  | Description                |
-|----------------------------|----------|----------------------------|
+| -------------------------- | -------- | -------------------------- |
 | `react`                    | ^19.2.1  | UI library                 |
 | `react-dom`                | ^19.2.1  | React DOM renderer         |
 | `@tanstack/react-start`    | ^1.132.0 | Full-stack React framework |
@@ -292,7 +292,7 @@ The project uses GitHub Actions for continuous integration. The pipeline runs on
 ### Development
 
 | Package                               | Version | Description         |
-|---------------------------------------|---------|---------------------|
+| ------------------------------------- | ------- | ------------------- |
 | `typescript`                          | ^5.7.2  | TypeScript compiler |
 | `vite`                                | ^7.1.7  | Build tool          |
 | `vitest`                              | ^3.0.5  | Test runner         |

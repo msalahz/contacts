@@ -35,7 +35,7 @@ To provide an effortless way to manage, search, and share contacts across device
 The contact database schema has been implemented with the following fields:
 
 | Field          | Type      | Description                                                              |
-|----------------|-----------|--------------------------------------------------------------------------|
+| -------------- | --------- | ------------------------------------------------------------------------ |
 | `id`           | UUID v7   | Primary key                                                              |
 | `userId`       | Text      | Foreign key to user (cascade delete)                                     |
 | `firstName`    | Text      | Required first name                                                      |
@@ -194,10 +194,10 @@ The contact database schema has been implemented with the following fields:
 
 - Authentication powered by better-auth integration
 - Routes implemented:
-    - `/signin` - Email/password signin
-    - `/signup` - Email/password registration
-    - `/forgot-password` - Request password reset
-    - `/reset-password` - Complete password reset
+  - `/signin` - Email/password signin
+  - `/signup` - Email/password registration
+  - `/forgot-password` - Request password reset
+  - `/reset-password` - Complete password reset
 - Session management with `findSessionFn` server function
 - Auth-aware landing page CTA (shows "Go to Console" when logged in)
 - Route guards redirect authenticated users away from auth pages
