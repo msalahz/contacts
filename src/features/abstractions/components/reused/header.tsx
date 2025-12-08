@@ -45,11 +45,7 @@ export function HeaderSignOutButton() {
     mutationFn: () => signOut(),
   })
   return (
-    <Button
-      variant="outline"
-      className="min-w-25"
-      onClick={() => signOutMutation()}
-    >
+    <Button variant="outline" className="min-w-25" onClick={() => signOutMutation()}>
       {isPending ? <Spinner /> : 'Sign Out'}
     </Button>
   )
@@ -61,14 +57,10 @@ export function HeaderActions({
   ...props
 }: React.ComponentProps<'div'> & { session: Session | null }) {
   return (
-    <div
-      data-slot="header-actions"
-      className="flex items-center justify-end gap-2"
-      {...props}
-    >
+    <div data-slot="header-actions" className="flex items-center justify-end gap-2" {...props}>
       {session?.user ? (
         <>
-          <span className="italic">Welcome, {session.user.name}</span>
+          <span className="hidden italic lg:block">Welcome, {session.user.name}</span>
           {children}
           <Button asChild className="min-w-25">
             <Link to="/console">Go to Console</Link>
