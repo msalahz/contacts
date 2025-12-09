@@ -1,12 +1,14 @@
 import { v7 as uuidv7 } from 'uuid'
-import { boolean, index, jsonb, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, index, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 import { user } from './auth'
 
 export const contact = pgTable(
   'contact',
   {
-    id: text().primaryKey().$defaultFn(() => uuidv7()),
+    id: text()
+      .primaryKey()
+      .$defaultFn(() => uuidv7()),
     userId: text()
       .notNull()
       .references(() => user.id, { onDelete: 'cascade' }),
@@ -26,15 +28,12 @@ export const contact = pgTable(
     jobTitle: text(),
     department: text(),
 
-    // Address (stored as JSON for flexibility)
-    address: jsonb().$type<{
-      street?: string
-      city?: string
-      state?: string
-      postalCode?: string
-      country?: string
-      type?: 'home' | 'work' | 'other'
-    }>(),
+    // Address
+    street: text(),
+    city: text(),
+    state: text(),
+    postalCode: text(),
+    country: text(),
 
     // Additional Info
     notes: text(),
