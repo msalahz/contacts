@@ -4,11 +4,13 @@
 
 ## Overview
 
-A simple, fast, and secure contact management application that helps users organize all their personal and professional contacts in one place.
+A simple, fast, and secure contact management application that helps users organize all their personal and professional
+contacts in one place.
 
 ## Vision
 
-To provide an effortless way to manage, search, and share contacts across devices with a focus on simplicity and user experience.
+To provide an effortless way to manage, search, and share contacts across devices with a focus on simplicity and user
+experience.
 
 ## Target Users
 
@@ -35,7 +37,7 @@ To provide an effortless way to manage, search, and share contacts across device
 The contact database schema has been implemented with the following fields:
 
 | Field          | Type      | Description                                                              |
-| -------------- | --------- | ------------------------------------------------------------------------ |
+|----------------|-----------|--------------------------------------------------------------------------|
 | `id`           | UUID v7   | Primary key                                                              |
 | `userId`       | Text      | Foreign key to user (cascade delete)                                     |
 | `firstName`    | Text      | Required first name                                                      |
@@ -194,12 +196,12 @@ The contact database schema has been implemented with the following fields:
 
 - Authentication powered by better-auth integration
 - Routes implemented:
-  - `/signin` - Email/password signin
-  - `/signup` - Email/password registration
-  - `/forgot-password` - Request password reset
-  - `/reset-password` - Complete password reset
+    - `/signin` - Email/password signin
+    - `/signup` - Email/password registration
+    - `/forgot-password` - Request password reset
+    - `/reset-password` - Complete password reset
 - Session management with `findSessionFn` server function
-- Auth-aware landing page CTA (shows "Go to Console" when logged in)
+- Auth-aware landing page CTA (shows "My Contacts" when logged in)
 - Route guards redirect authenticated users away from auth pages
 
 ### 11. Internationalization (i18n)
@@ -332,4 +334,5 @@ Features will be developed in phases based on priority and user feedback.
 
 ## Conclusion
 
-This contacts management application aims to provide a comprehensive, user-friendly solution for organizing and managing contacts across all devices, with a focus on simplicity, security and performance.
+This contacts management application aims to provide a comprehensive, user-friendly solution for organizing and managing
+contacts across all devices, with a focus on simplicity, security and performance.

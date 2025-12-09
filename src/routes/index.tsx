@@ -43,7 +43,7 @@ function App() {
           <div className="mt-10 flex items-center justify-center gap-4">
             {session?.user ? (
               <Button asChild size="lg">
-                <Link to="/console">Go to Console</Link>
+                <Link to="/console">Manage My Contacts</Link>
               </Button>
             ) : (
               <>

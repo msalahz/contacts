@@ -84,7 +84,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <span className="hidden italic lg:block">Welcome, {session.user.name}</span>
                 <HeaderSignOutButton />
                 <Button asChild className="min-w-25">
-                  <Link to="/console">Go to Console</Link>
+                  <Link to="/console">My Contacts</Link>
                 </Button>
               </>
             ) : (
