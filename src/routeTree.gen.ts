@@ -17,6 +17,8 @@ import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthSigninRouteImport } from './routes/_auth/signin'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
+import { Route as ConsoleContactsRouteRouteImport } from './routes/console/contacts/route'
+import { Route as ConsoleContactsNewRouteImport } from './routes/console/contacts/new'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const LayoutRoute = LayoutRouteImport.update({
@@ -58,6 +60,16 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsoleContactsRouteRoute = ConsoleContactsRouteRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => ConsoleRouteRoute,
+} as any)
+const ConsoleContactsNewRoute = ConsoleContactsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => ConsoleContactsRouteRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -66,6 +78,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/console': typeof ConsoleRouteRouteWithChildren
+  '/console/contacts': typeof ConsoleContactsRouteRouteWithChildren
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signin': typeof AuthSigninRoute
@@ -73,8 +86,10 @@ export interface FileRoutesByFullPath {
   '/': typeof LayoutIndexRoute
   '/console/': typeof ConsoleIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/console/contacts/new': typeof ConsoleContactsNewRoute
 }
 export interface FileRoutesByTo {
+  '/console/contacts': typeof ConsoleContactsRouteRouteWithChildren
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/signin': typeof AuthSigninRoute
@@ -82,11 +97,13 @@ export interface FileRoutesByTo {
   '/': typeof LayoutIndexRoute
   '/console': typeof ConsoleIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/console/contacts/new': typeof ConsoleContactsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/console': typeof ConsoleRouteRouteWithChildren
   '/_Layout': typeof LayoutRouteWithChildren
+  '/console/contacts': typeof ConsoleContactsRouteRouteWithChildren
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_auth/signin': typeof AuthSigninRoute
@@ -94,11 +111,13 @@ export interface FileRoutesById {
   '/_Layout/': typeof LayoutIndexRoute
   '/console/': typeof ConsoleIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/console/contacts/new': typeof ConsoleContactsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/console'
+    | '/console/contacts'
     | '/forgot-password'
     | '/reset-password'
     | '/signin'
@@ -106,8 +125,10 @@ export interface FileRouteTypes {
     | '/'
     | '/console/'
     | '/api/auth/$'
+    | '/console/contacts/new'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/console/contacts'
     | '/forgot-password'
     | '/reset-password'
     | '/signin'
@@ -115,10 +136,12 @@ export interface FileRouteTypes {
     | '/'
     | '/console'
     | '/api/auth/$'
+    | '/console/contacts/new'
   id:
     | '__root__'
     | '/console'
     | '/_Layout'
+    | '/console/contacts'
     | '/_auth/forgot-password'
     | '/_auth/reset-password'
     | '/_auth/signin'
@@ -126,6 +149,7 @@ export interface FileRouteTypes {
     | '/_Layout/'
     | '/console/'
     | '/api/auth/$'
+    | '/console/contacts/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,6 +220,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/console/contacts': {
+      id: '/console/contacts'
+      path: '/contacts'
+      fullPath: '/console/contacts'
+      preLoaderRoute: typeof ConsoleContactsRouteRouteImport
+      parentRoute: typeof ConsoleRouteRoute
+    }
+    '/console/contacts/new': {
+      id: '/console/contacts/new'
+      path: '/new'
+      fullPath: '/console/contacts/new'
+      preLoaderRoute: typeof ConsoleContactsNewRouteImport
+      parentRoute: typeof ConsoleContactsRouteRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -206,11 +244,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ConsoleContactsRouteRouteChildren {
+  ConsoleContactsNewRoute: typeof ConsoleContactsNewRoute
+}
+
+const ConsoleContactsRouteRouteChildren: ConsoleContactsRouteRouteChildren = {
+  ConsoleContactsNewRoute: ConsoleContactsNewRoute,
+}
+
+const ConsoleContactsRouteRouteWithChildren =
+  ConsoleContactsRouteRoute._addFileChildren(ConsoleContactsRouteRouteChildren)
+
 interface ConsoleRouteRouteChildren {
+  ConsoleContactsRouteRoute: typeof ConsoleContactsRouteRouteWithChildren
   ConsoleIndexRoute: typeof ConsoleIndexRoute
 }
 
 const ConsoleRouteRouteChildren: ConsoleRouteRouteChildren = {
+  ConsoleContactsRouteRoute: ConsoleContactsRouteRouteWithChildren,
   ConsoleIndexRoute: ConsoleIndexRoute,
 }
 
