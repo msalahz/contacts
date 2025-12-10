@@ -48,11 +48,11 @@ function RouteComponent() {
         </HeaderActions>
       </Header>
 
-      <main className="flex min-h-0 flex-col overflow-auto">
+      <section className="flex min-h-0 flex-col overflow-auto">
         <div className="flex-1">
           <Outlet />
         </div>
-      </main>
+      </section>
 
       <Footer className="mt-auto w-full">
         <Footer.Copyrights />
