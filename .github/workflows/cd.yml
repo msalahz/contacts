@@ -73,7 +73,7 @@ jobs:
     needs: check-ci-status
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: build
       - name: Deploy to Netlify
