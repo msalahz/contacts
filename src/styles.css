@@ -53,7 +53,7 @@ code {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --font-sync: 'Syne', sans-serif;
+  --font-syne: 'Syne', sans-serif;
   --font-plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;
 }
 
@@ -128,7 +128,7 @@ code {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
-  --font-sync: var(--font-sync);
+  --font-syne: var(--font-syne);
   --font-plus-jakarta-sans: var(--font-plus-jakarta-sans);
 
   --radius-sm: calc(var(--radius) - 4px);
