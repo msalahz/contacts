@@ -74,8 +74,6 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v5
-        with:
-          name: build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
