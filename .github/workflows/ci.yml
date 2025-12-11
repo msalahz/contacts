@@ -8,6 +8,7 @@ on:
       - '.*/**'
       - '!.github/**'
       - '*/**.md'
+      - .husky/**
   pull_request:
     branches: [main]
     paths-ignore:
@@ -15,6 +16,7 @@ on:
       - '.*/**'
       - '!.github/**'
       - '*/**.md'
+      - .husky/**
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -58,10 +60,3 @@ jobs:
 
       - name: Build application
         run: pnpm build
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v5
-        with:
-          path: dist
-          overwrite: true
-          if-no-files-found: error

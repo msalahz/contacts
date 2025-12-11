@@ -18,7 +18,8 @@
     "db:push": "drizzle-kit push",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
-    "prepare": "husky"
+    "prepare": "husky",
+    "deploy:netlify": "netlify deploy --prod"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
