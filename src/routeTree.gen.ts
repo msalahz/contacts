@@ -252,8 +252,9 @@ const ConsoleContactsRouteRouteChildren: ConsoleContactsRouteRouteChildren = {
   ConsoleContactsNewRoute: ConsoleContactsNewRoute,
 }
 
-const ConsoleContactsRouteRouteWithChildren =
-  ConsoleContactsRouteRoute._addFileChildren(ConsoleContactsRouteRouteChildren)
+const ConsoleContactsRouteRouteWithChildren = ConsoleContactsRouteRoute._addFileChildren(
+  ConsoleContactsRouteRouteChildren,
+)
 
 interface ConsoleRouteRouteChildren {
   ConsoleContactsRouteRoute: typeof ConsoleContactsRouteRouteWithChildren
@@ -265,9 +266,7 @@ const ConsoleRouteRouteChildren: ConsoleRouteRouteChildren = {
   ConsoleIndexRoute: ConsoleIndexRoute,
 }
 
-const ConsoleRouteRouteWithChildren = ConsoleRouteRoute._addFileChildren(
-  ConsoleRouteRouteChildren,
-)
+const ConsoleRouteRouteWithChildren = ConsoleRouteRoute._addFileChildren(ConsoleRouteRouteChildren)
 
 interface LayoutRouteChildren {
   LayoutIndexRoute: typeof LayoutIndexRoute
@@ -277,8 +276,7 @@ const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutIndexRoute: LayoutIndexRoute,
 }
 
-const LayoutRouteWithChildren =
-  LayoutRoute._addFileChildren(LayoutRouteChildren)
+const LayoutRouteWithChildren = LayoutRoute._addFileChildren(LayoutRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   ConsoleRouteRoute: ConsoleRouteRouteWithChildren,

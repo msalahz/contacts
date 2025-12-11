@@ -8,7 +8,7 @@
 
 body {
   @apply m-0;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -53,9 +53,8 @@ code {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --font-sync: "Syne", sans-serif;
-  --font-plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
-
+  --font-sync: 'Syne', sans-serif;
+  --font-plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;
 }
 
 .dark {
